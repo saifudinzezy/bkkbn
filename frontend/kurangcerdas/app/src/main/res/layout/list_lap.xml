@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/value_10dp"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="3dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/value_16dp"
+                android:layout_marginTop="@dimen/value_5dp"
+                android:layout_marginRight="@dimen/value_16dp"
+                android:layout_marginBottom="@dimen/value_5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txt_tanggal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    tools:text="12/2/2017" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="@dimen/width"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/appbar_padding_top"
+                        android:text="@string/nama"
+                        android:textColor="@android:color/white" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/appbar_padding_top"
+                        android:text="@string/titik_dua"
+                        android:textColor="@android:color/white" />
+
+                    <TextView
+                        android:id="@+id/txt_nama"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/appbar_padding_top"
+                        android:text="@string/nama"
+                        android:textColor="@android:color/white" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="@dimen/width"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/appbar_padding_top"
+                        android:text="@string/jenis"
+                        android:textColor="@android:color/white" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/appbar_padding_top"
+                        android:text="@string/titik_dua"
+                        android:textColor="@android:color/white" />
+
+                    <TextView
+                        android:id="@+id/txt_jenis"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/appbar_padding_top"
+                        android:text="@string/jenis"
+                        android:textColor="@android:color/white" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="@dimen/width"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/appbar_padding_top"
+                        android:text="@string/kronologi"
+                        android:textColor="@android:color/white" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/appbar_padding_top"
+                        android:text="@string/titik_dua"
+                        android:textColor="@android:color/white" />
+
+                    <TextView
+                        android:id="@+id/txt_kronologi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/appbar_padding_top"
+                        android:text="@string/kronologi"
+                        android:textColor="@android:color/white" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    tools:background="@color/yello">
+
+                    <TextView
+                        android:layout_width="@dimen/width"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/appbar_padding_top"
+                        android:text="@string/status"
+                        android:textColor="@android:color/white" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/appbar_padding_top"
+                        android:text="@string/titik_dua"
+                        android:textColor="@android:color/white" />
+
+                    <TextView
+                        android:id="@+id/txt_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/appbar_padding_top"
+                        android:text="Menunggu"
+                        android:textAllCaps="true"
+                        android:textColor="@android:color/white"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ln_pesan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="@dimen/width"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/appbar_padding_top"
+                        android:text="@string/pesan"
+                        android:textColor="@android:color/white" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/appbar_padding_top"
+                        android:text="@string/titik_dua"
+                        android:textColor="@android:color/white" />
+
+                    <TextView
+                        android:id="@+id/txt_pesan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/appbar_padding_top"
+                        android:text="@string/kronologi"
+                        android:textColor="@android:color/white" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_separator"
+        android:layout_marginTop="@dimen/value_5dp" />
+
+</LinearLayout>

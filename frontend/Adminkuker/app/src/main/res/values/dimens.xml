@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="value_16dp">16dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="value_5dp">5dp</dimen>
+    <dimen name="value_10dp">10dp</dimen>
+    <dimen name="appbar_padding_top">8dp</dimen>
+
+    <dimen name="spacing_huge">64dp</dimen>
+    <dimen name="spacing_large">32dp</dimen>
+    <dimen name="spacing_medium">16dp</dimen>
+    <dimen name="spacing_small">8dp</dimen>
+    <dimen name="spacing_tiny">4dp</dimen>
+
+    <dimen name="touch_area">48dp</dimen>
+
+    <dimen name="vertical_divide">16dp</dimen>
+    <dimen name="button_height">44dp</dimen>
+    <dimen name="login_button_height">60dp</dimen>
+    <dimen name="member_avatar_width">64dp</dimen>
+    <dimen name="small_textview_size">12sp</dimen>
+    <dimen name="width">110dp</dimen>
+    <dimen name="height_separator">1dp</dimen>
+    <dimen name="standard_textview_size">16sp</dimen>
+    <dimen name="large_textview_size">24sp</dimen>
+    <dimen name="super_large_textview_size">50sp</dimen>
+    <dimen name="card_elevation">2dp</dimen>
+    <dimen name="card_corner_radius">2dp</dimen>
+    <dimen name="space_bottom">50dp</dimen>
+    <dimen name="height_container_profile">126dp</dimen>
+    <dimen name="value_20sp">20sp</dimen>
+    <dimen name="circle_inside_margin">10dp</dimen>
+    <dimen name="value_26dp">26dp</dimen>
+    <dimen name="value_40dp">40dp</dimen>
+    <dimen name="value_12sp">12sp</dimen>
+</resources>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_bg"
+    tools:context="com.example.asus.kurangcerdas.MainActivity">
+
+    <RelativeLayout
+        android:id="@+id/linearbaner"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorunyu">
+            <ImageView
+                android:id="@+id/p3a"
+                android:layout_width="160dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/ic_baner"/>
+            <ImageView
+                android:id="@+id/image1"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/ic_info"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp" />
+    </RelativeLayout>
+
+    <com.daimajia.slider.library.SliderLayout
+        android:id="@+id/slider"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/linearbaner"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <LinearLayout
+        android:id="@+id/linear1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/slider"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="190dp"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/gbtambah"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:src="@drawable/tambah_laporan" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:textColor="@color/colorunyu"
+            android:text="TAMBAH PENGADUAN"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/gbchat"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="29dp"
+            android:src="@drawable/ic_chat" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:textColor="@color/colorunyu"
+            android:text="CHAT PETUGAS"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/slider"
+        android:layout_marginLeft="190dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/gbstatus"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:src="@drawable/laporan" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:text="STATUS PENGADUAN"
+            android:textColor="@color/colorunyu"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/gbakun"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="29dp"
+            android:src="@drawable/akun" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="AKUN"
+            android:textColor="@color/colorunyu"
+            android:textAlignment="center"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</RelativeLayout>
