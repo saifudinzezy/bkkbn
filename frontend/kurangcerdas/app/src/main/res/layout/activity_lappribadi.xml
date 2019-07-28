@@ -8,35 +8,35 @@
     android:orientation="vertical"
     tools:context="com.example.asus.kurangcerdas.Lappribadi">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@color/colorunyu"
-                android:orientation="horizontal">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorunyu"
+        android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="10dp"
-                    android:src="@drawable/tambah_laporan" />
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/tambah_laporan" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="25dp"
-                    android:text="INPUT PENGADUAN"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="25dp"
+            android:text="INPUT PENGADUAN"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -119,6 +119,7 @@
                     android:text="TTL : "
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="15sp" />
+
                 <TextView
                     android:id="@+id/tx3"
                     android:layout_width="wrap_content"
@@ -128,6 +129,7 @@
                     android:hint="TEMPAT"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="15sp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -136,6 +138,7 @@
                     android:text=","
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="15sp" />
+
                 <TextView
                     android:id="@+id/tx4"
                     android:layout_width="wrap_content"
@@ -209,11 +212,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="45dp"
+                    android:layout_marginTop="10dp"
                     android:text="RT/RW : "
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="15sp" />
+
                 <TextView
                     android:id="@+id/tx7"
                     android:layout_width="wrap_content"
@@ -235,11 +239,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="45dp"
+                    android:layout_marginTop="10dp"
                     android:text="KEL/DESA : "
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="15sp" />
+
                 <TextView
                     android:id="@+id/tx8"
                     android:layout_width="wrap_content"
@@ -250,6 +255,7 @@
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="15sp" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -260,11 +266,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="45dp"
                     android:layout_marginTop="10dp"
                     android:text="KECAMATAN : "
-                    android:layout_marginLeft="45dp"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="15sp" />
+
                 <TextView
                     android:id="@+id/tx9"
                     android:layout_width="wrap_content"
@@ -274,12 +281,14 @@
                     android:hint="KEC"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="15sp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="2sp"
                     android:text=","
-                    android:textColor="@color/colorPrimaryDark"
-                    android:layout_marginRight="2sp"/>
+                    android:textColor="@color/colorPrimaryDark" />
+
                 <TextView
                     android:id="@+id/tx10"
                     android:layout_width="wrap_content"
@@ -318,7 +327,6 @@
             </LinearLayout>
 
 
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -335,11 +343,12 @@
 
                 <Spinner
                     android:id="@+id/edt_hub"
+                    style="@android:style/Widget.Holo.Light.Spinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:entries="@array/Hub"
-                    android:padding="2dp"/>
+                    android:padding="2dp" />
             </LinearLayout>
 
             <TextView
@@ -392,6 +401,42 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Perempuan"
+                    android:textColor="@color/colorpink" />
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Status Pernikahan: "
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="15sp" />
+
+            <RadioGroup
+                android:id="@+id/rgroup2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/r_lajang2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lajang"
+                    android:textColor="@color/colorpink" />
+
+                <RadioButton
+                    android:id="@+id/r_nikah2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Menikah"
+                    android:textColor="@color/colorpink" />
+
+                <RadioButton
+                    android:id="@+id/r_duda2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Duda/Janda"
                     android:textColor="@color/colorpink" />
             </RadioGroup>
 
@@ -479,7 +524,41 @@
                     android:textColor="@color/colorpink" />
             </RadioGroup>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Status Pernikahan: "
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="15sp" />
 
+            <RadioGroup
+                android:id="@+id/rgroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/r_lajang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lajang"
+                    android:textColor="@color/colorpink" />
+
+                <RadioButton
+                    android:id="@+id/r_nikah"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Menikah"
+                    android:textColor="@color/colorpink" />
+
+                <RadioButton
+                    android:id="@+id/r_duda"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Duda/Janda"
+                    android:textColor="@color/colorpink" />
+            </RadioGroup>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -496,11 +575,12 @@
 
                 <Spinner
                     android:id="@+id/edt_hub1"
+                    style="@android:style/Widget.Holo.Light.Spinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:entries="@array/Hub"
-                    android:padding="2dp"/>
+                    android:padding="2dp" />
             </LinearLayout>
 
 
@@ -530,10 +610,11 @@
 
                 <Spinner
                     android:id="@+id/edt_ks"
+                    style="@android:style/Widget.Holo.Light.Spinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:entries="@array/Kasus"
+                    android:entries="@array/kasus"
                     android:padding="2dp"
                     android:textColor="@color/colorpink" />
             </LinearLayout>
@@ -586,11 +667,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <Button
                     android:id="@+id/open_image"
                     android:layout_width="320dp"
                     android:layout_height="40dp"
                     android:text="Bukti Foto" />
+
                 <TextView
                     android:id="@+id/txt_view"
                     android:layout_width="wrap_content"
@@ -603,19 +686,19 @@
 
             <ImageView
                 android:id="@+id/showImg"
-                android:background="@drawable/placeholder"
-                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:background="@drawable/placeholder"
+                android:visibility="gone" />
 
 
             <Button
                 android:id="@+id/btn_buatlap"
-                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="30dp"
                 android:background="@color/colorPrimaryDark"
                 android:text="BUAT LAPORAN" />

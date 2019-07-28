@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">kurangcerdas</string>
+    <string name="app_name">Pelaporan Kekerasan</string>
 
     <string-array name="Agama">
         <item>Islam</item>
@@ -10,7 +10,7 @@
         <item>Konghucu</item>
     </string-array>
 
-    <string-array name="Kasus">
+    <string-array name="kasus">
         <item>Kekerasan Fisik</item>
         <item>Kekerasan Phsikhis</item>
         <item>Kekerasan Seksual</item>

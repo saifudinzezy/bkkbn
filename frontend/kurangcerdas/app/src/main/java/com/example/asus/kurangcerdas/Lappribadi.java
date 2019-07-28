@@ -144,8 +144,24 @@ public class Lappribadi extends AppCompatActivity {
     ImageView showImg;
     @BindView(R.id.tx17)
     EditText tx17;
+    @BindView(R.id.r_lajang)
+    RadioButton rLajang;
+    @BindView(R.id.r_nikah)
+    RadioButton rNikah;
+    @BindView(R.id.r_duda)
+    RadioButton rDuda;
+    @BindView(R.id.rgroup)
+    RadioGroup rgroup;
+    @BindView(R.id.r_lajang2)
+    RadioButton rLajang2;
+    @BindView(R.id.r_nikah2)
+    RadioButton rNikah2;
+    @BindView(R.id.r_duda2)
+    RadioButton rDuda2;
+    @BindView(R.id.rgroup2)
+    RadioGroup rgroup2;
     private Calendar myCalendar;
-    String hub, hub1, ks, jk, jk1;
+    String hub, hub1, ks, jk, jk1, statusNikah1, statusNikah2;
 
     private int GALLERY = 1, CAMERA = 2;
     String partImage = "";
@@ -173,6 +189,22 @@ public class Lappribadi extends AppCompatActivity {
             }
         });
 
+        rgroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                RadioButton rb = findViewById(checkedId);
+                statusNikah1 = rb.getText().toString();
+            }
+        });
+
+        rgroup2.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                RadioButton rb = findViewById(checkedId);
+                statusNikah2 = rb.getText().toString();
+            }
+        });
+
         edtJenkel1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
@@ -183,7 +215,7 @@ public class Lappribadi extends AppCompatActivity {
 
         //spiner status
         final ArrayAdapter<CharSequence> adapterStatus = ArrayAdapter.createFromResource(this, R.array.Hub,
-                R.layout.support_simple_spinner_dropdown_item);
+                R.layout.spinner_item);
         edtHub.setAdapter(adapterStatus);
 
         //select sp
@@ -201,7 +233,7 @@ public class Lappribadi extends AppCompatActivity {
 
         //spiner status
         final ArrayAdapter<CharSequence> adapterStatus1 = ArrayAdapter.createFromResource(this, R.array.Hub,
-                R.layout.support_simple_spinner_dropdown_item);
+                R.layout.spinner_item);
         edtHub1.setAdapter(adapterStatus1);
 
         //select sp
@@ -218,15 +250,15 @@ public class Lappribadi extends AppCompatActivity {
         });
 
         //spiner status
-        final ArrayAdapter<CharSequence> adapterStatus2 = ArrayAdapter.createFromResource(this, R.array.Kasus,
-                R.layout.support_simple_spinner_dropdown_item);
+        final ArrayAdapter<CharSequence> adapterStatus4 = ArrayAdapter.createFromResource(this, R.array.kasus,
+                R.layout.spinner_item);
         edtKs.setAdapter(adapterStatus);
 
         //select sp
         edtKs.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ks = adapterStatus2.getItem(position).toString();
+                ks = adapterStatus4.getItem(position).toString();
             }
 
             @Override
@@ -471,7 +503,7 @@ public class Lappribadi extends AppCompatActivity {
         MultipartBody.Part partImage = MultipartBody.Part.createFormData("image", imageFile.getName(), requestBody);
         ApiService service = RetroClient.getApiService();
         Call<ResponseInsert> call = service.insretLap(id, partImage, hubPelap, namaKorban, jkKorban, usiaKorb, alamatKorban,
-                nmPelaku, jkPelaku, hubPelaku, jenisKs, tglKej, kronologi);
+                nmPelaku, jkPelaku, hubPelaku, jenisKs, tglKej, kronologi, statusNikah2, statusNikah1);
         call.enqueue(new Callback<ResponseInsert>() {
             @Override
             public void onResponse(Call<ResponseInsert> call, Response<ResponseInsert> response) {

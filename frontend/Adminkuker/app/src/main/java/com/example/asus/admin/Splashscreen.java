@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Window;
 
+import com.example.asus.admin.menu.Login;
 import com.example.asus.admin.menu.MainActivity;
 import com.felipecsl.gifimageview.library.GifImageView;
 
@@ -39,7 +40,7 @@ public class Splashscreen extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                startActivity(new Intent(getApplicationContext(), Login.class));
                 finish();
             }
         }, 4000L); //3000 L = 3 detik
