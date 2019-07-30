@@ -63,7 +63,8 @@ public class MainActivity extends AppCompatActivity implements LaporanAdapter.La
     AlertDialog.Builder dialog;
     LayoutInflater inflater;
     View dialogView;
-    TextView txtNamaK, txtGenderK, txtUmurK, txtAlamatK, txtNamaP, txtGenderP, txtHubP, txtJenisP, txtKronologi;
+    TextView txtNamaK, txtGenderK, txtUmurK, txtAlamatK, txtNamaP, txtGenderP, txtHubP, txtJenisP, txtKronologi, txtStatusKorban,
+            txtStatusPelaku;;
     ImageView imageView;
     @BindView(R.id.imageView4)
     ImageView imageView4;
@@ -210,6 +211,8 @@ public class MainActivity extends AppCompatActivity implements LaporanAdapter.La
         txtGenderP = dialogView.findViewById(R.id.txt_gender_p);
         txtHubP = dialogView.findViewById(R.id.txt_hub_p);
         txtJenisP = dialogView.findViewById(R.id.txt_jenis_p);
+        txtStatusPelaku = dialogView.findViewById(R.id.txt_status_pelaku);
+        txtStatusKorban = dialogView.findViewById(R.id.txt_status_korban);
         //kronologi
         txtKronologi = dialogView.findViewById(R.id.txt_kronologi);
 
@@ -223,12 +226,14 @@ public class MainActivity extends AppCompatActivity implements LaporanAdapter.La
         txtGenderK.setText(data.getJkKorban());
         txtUmurK.setText(data.getUsiaKorb());
         txtAlamatK.setText(data.getAlamatKorban());
+        txtStatusKorban.setText(data.getS_korban());
         //pelaku
         txtNamaP.setText(data.getNmPelaku());
         txtGenderP.setText(data.getJkPelaku());
         txtHubP.setText(data.getHubPelaku());
         txtJenisP.setText(data.getJenisKs());
         txtKronologi.setText(data.getKronologi());
+        txtStatusPelaku.setText(data.getS_pelapor());
 
         dialog.setNeutralButton("HAPUS", new DialogInterface.OnClickListener() {
             @Override

@@ -107,6 +107,35 @@
                     android:layout_width="@dimen/width"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/appbar_padding_top"
+                    android:text="@string/status_nikah"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/appbar_padding_top"
+                    android:text="@string/titik_dua"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/txt_status_korban"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/appbar_padding_top"
+                    android:text="@string/nama"
+                    android:textColor="@android:color/black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/width"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/appbar_padding_top"
                     android:text="@string/umur"
                     android:textColor="@android:color/black" />
 
@@ -220,6 +249,35 @@
                     android:id="@+id/txt_gender_p"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/appbar_padding_top"
+                    android:text="@string/nama"
+                    android:textColor="@android:color/black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/width"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/appbar_padding_top"
+                    android:text="@string/status_nikah"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/appbar_padding_top"
+                    android:text="@string/titik_dua"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/txt_status_pelaku"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginRight="@dimen/appbar_padding_top"
                     android:text="@string/nama"
                     android:textColor="@android:color/black" />

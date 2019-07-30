@@ -51,7 +51,8 @@ public class Statuslap extends AppCompatActivity implements LaporanAdapter.Lapor
     AlertDialog.Builder dialog;
     LayoutInflater inflater;
     View dialogView;
-    TextView txtNamaK, txtGenderK, txtUmurK, txtAlamatK, txtNamaP, txtGenderP, txtHubP, txtJenisP, txtKronologi;
+    TextView txtNamaK, txtGenderK, txtUmurK, txtAlamatK, txtNamaP, txtGenderP, txtHubP, txtJenisP, txtKronologi, txtStatusKorban,
+            txtStatusPelaku;
     ImageView imageView;
 
     @Override
@@ -117,8 +118,6 @@ public class Statuslap extends AppCompatActivity implements LaporanAdapter.Lapor
         dialogView = inflater.inflate(R.layout.pop_up, null);
         dialog.setView(dialogView);
         dialog.setCancelable(true);
-//        dialog.setIcon(R.drawable.ic_info);
-//        dialog.setTitle("Data Laporan");
 
         //inisialisasi
         //korban
@@ -132,6 +131,8 @@ public class Statuslap extends AppCompatActivity implements LaporanAdapter.Lapor
         txtGenderP = dialogView.findViewById(R.id.txt_gender_p);
         txtHubP = dialogView.findViewById(R.id.txt_hub_p);
         txtJenisP = dialogView.findViewById(R.id.txt_jenis_p);
+        txtStatusPelaku = dialogView.findViewById(R.id.txt_status_pelaku);
+        txtStatusKorban = dialogView.findViewById(R.id.txt_status_korban);
         //kronologi
         txtKronologi = dialogView.findViewById(R.id.txt_kronologi);
 
@@ -143,6 +144,7 @@ public class Statuslap extends AppCompatActivity implements LaporanAdapter.Lapor
                 .into(imageView);
         txtNamaK.setText(data.getNamaKorban());
         txtGenderK.setText(data.getJkKorban());
+        txtStatusKorban.setText(data.getS_korban());
         txtUmurK.setText(data.getUsiaKorb());
         txtAlamatK.setText(data.getAlamatKorban());
         //pelaku
@@ -151,6 +153,7 @@ public class Statuslap extends AppCompatActivity implements LaporanAdapter.Lapor
         txtHubP.setText(data.getHubPelaku());
         txtJenisP.setText(data.getJenisKs());
         txtKronologi.setText(data.getKronologi());
+        txtStatusPelaku.setText(data.getS_pelapor());
 
         dialog.setNeutralButton("HAPUS", new DialogInterface.OnClickListener() {
             @Override

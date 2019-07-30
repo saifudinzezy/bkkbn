@@ -252,13 +252,14 @@ public class Lappribadi extends AppCompatActivity {
         //spiner status
         final ArrayAdapter<CharSequence> adapterStatus4 = ArrayAdapter.createFromResource(this, R.array.kasus,
                 R.layout.spinner_item);
-        edtKs.setAdapter(adapterStatus);
+        edtKs.setAdapter(adapterStatus4);
 
         //select sp
         edtKs.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 ks = adapterStatus4.getItem(position).toString();
+                Toast.makeText(Lappribadi.this, ""+adapterStatus4.getItem(position).toString(), Toast.LENGTH_SHORT).show();
             }
 
             @Override

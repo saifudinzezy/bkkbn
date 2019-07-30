@@ -614,9 +614,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:entries="@array/kasus"
-                    android:padding="2dp"
-                    android:textColor="@color/colorpink" />
+                    android:padding="2dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -629,7 +627,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Tanggal Lahir : "
+                    android:text="Tanggal Kejadian : "
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="15sp" />
 

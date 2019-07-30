@@ -108,6 +108,7 @@
     <string name="alamat">Alamat</string>
     <string name="hub">Hub. Pelaku</string>
     <string name="cari">Cari...</string>
+    <string name="status_nikah">Status Nikah</string>
 
     <string-array name="statud">
         <item>Diproses</item>

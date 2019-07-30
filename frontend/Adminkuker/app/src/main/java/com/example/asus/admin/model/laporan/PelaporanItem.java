@@ -55,6 +55,28 @@ public class PelaporanItem{
 	@SerializedName("status")
 	private String status;
 
+	@SerializedName("s_pelapor")
+	private String s_pelapor;
+
+	@SerializedName("s_korban")
+	private String s_korban;
+
+	public String getS_pelapor() {
+		return s_pelapor;
+	}
+
+	public void setS_pelapor(String s_pelapor) {
+		this.s_pelapor = s_pelapor;
+	}
+
+	public String getS_korban() {
+		return s_korban;
+	}
+
+	public void setS_korban(String s_korban) {
+		this.s_korban = s_korban;
+	}
+
 	public void setAlamatKorban(String alamatKorban){
 		this.alamatKorban = alamatKorban;
 	}
