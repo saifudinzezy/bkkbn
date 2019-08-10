@@ -62,7 +62,7 @@ public class Login extends AppCompatActivity {
         if (sharedLogin.getSharedSudahLogin()) {
             if (sharedLogin.getSharedSudahLogin2()) {
                 //cek login kedua
-                startActivity(new Intent(Login.this, MainActivity.class)
+                startActivity(new Intent(Login.this, AllLap.class)
                         .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
                 finish();
             }
@@ -115,7 +115,7 @@ public class Login extends AppCompatActivity {
                     //cek login
                     sharedLogin.saveSharedBoolean(SP_SUDAH_LOGIN2, true);
                     //buka home jika berhasil login
-                    startActivity(new Intent(Login.this, MainActivity.class)
+                    startActivity(new Intent(Login.this, AllLap.class)
                             .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
                     //hancurkan activity
                     finish();

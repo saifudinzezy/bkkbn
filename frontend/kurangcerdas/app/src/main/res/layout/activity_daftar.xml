@@ -10,10 +10,10 @@
     <android.support.v4.widget.NestedScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true">
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -24,10 +24,10 @@
                 android:id="@+id/logodaftar"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/ic_icon"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="15dp" />
+                android:layout_marginTop="15dp"
+                android:src="@drawable/ic_icon" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -40,67 +40,68 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Nomer"
-                    android:textStyle="bold"
                     android:textAlignment="center"
-                    android:textColor="@color/black_semi_transparent" />
+                    android:textColor="@color/black_semi_transparent"
+                    android:textStyle="bold" />
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColorHint="@color/colorPrimaryDark"
-                    android:hint="@string/masukan_nik">
+                    android:hint="@string/masukan_nik"
+                    android:textColorHint="@color/colorPrimaryDark">
 
                     <EditText
                         android:id="@+id/edt_nik"
-                        android:textColor="@color/colorpink"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"
-                        android:textSize="15sp"/>
+                        android:textColor="@color/colorpink"
+                        android:textSize="15sp" />
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColorHint="@color/colorPrimaryDark"
-                    android:hint="@string/masukan_nama">
+                    android:hint="@string/masukan_nama"
+                    android:textColorHint="@color/colorPrimaryDark">
 
                     <EditText
                         android:id="@+id/edt_nama"
-                        android:textColor="@color/colorpink"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textCapWords"
-                        android:textSize="15sp"/>
+                        android:textColor="@color/colorpink"
+                        android:textSize="15sp" />
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColorHint="@color/colorPrimaryDark"
-                    android:hint="@string/masukan_tempat">
+                    android:hint="@string/masukan_tempat"
+                    android:textColorHint="@color/colorPrimaryDark">
 
                     <EditText
                         android:id="@+id/edt_tempat"
-                        android:textColor="@color/colorpink"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textCapWords"
-                        android:textSize="15sp"/>
+                        android:textColor="@color/colorpink"
+                        android:textSize="15sp" />
                 </android.support.design.widget.TextInputLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
                     android:text="Tanggal Lahir : "
-                    android:textSize="15sp"
-                    android:textColor="@color/colorPrimaryDark"/>
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="15sp" />
+
                 <TextView
                     android:id="@+id/txt_lahir"
-                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:drawableLeft="@drawable/ic_date_range_black_24dp"
                     android:text="Tanggal"
                     android:textColor="@color/colorpink"
@@ -108,11 +109,11 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:text="Jenis Kelamin : "
-                    android:textSize="15sp"
-                    android:textColor="@color/colorPrimaryDark"/>
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="15sp" />
 
                 <RadioGroup
                     android:id="@+id/edt_jenkel"
@@ -125,60 +126,28 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Laki - Laki"
-                        android:textColor="@color/colorpink"/>
+                        android:textColor="@color/colorpink" />
 
                     <RadioButton
                         android:id="@+id/perempuan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Perempuan"
-                        android:textColor="@color/colorpink"/>
+                        android:textColor="@color/colorpink" />
                 </RadioGroup>
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColorHint="@color/colorPrimaryDark"
-                    android:hint="@string/masukan_alamat">
+                    android:hint="@string/masukan_alamat"
+                    android:textColorHint="@color/colorPrimaryDark">
 
                     <EditText
                         android:id="@+id/edt_alamat"
-                        android:textColor="@color/colorpink"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textCapWords"
-                        android:textSize="15sp"/>
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="40dp"
-                    android:textColorHint="@color/colorPrimaryDark"
-                    android:hint="@string/masukan_rt">
-
-                    <EditText
-                        android:id="@+id/edt_rt"
                         android:textColor="@color/colorpink"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textCapWords"
-                        android:textSize="15sp"/>
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="40dp"
-                    android:textColorHint="@color/colorPrimaryDark"
-                    android:hint="@string/masukan_desa">
-
-                    <EditText
-                        android:id="@+id/edt_desa"
-                        android:textColor="@color/colorpink"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textCapWords"
                         android:textSize="15sp" />
                 </android.support.design.widget.TextInputLayout>
 
@@ -186,68 +155,118 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="40dp"
-                    android:textColorHint="@color/colorPrimaryDark"
-                    android:hint="@string/masukan_kec">
+                    android:hint="@string/masukan_rt"
+                    android:textColorHint="@color/colorPrimaryDark">
 
                     <EditText
-                        android:id="@+id/edt_kec"
-                        android:textColor="@color/colorpink"
+                        android:id="@+id/edt_rt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textCapWords"
-                        android:textSize="15sp"/>
+                        android:textColor="@color/colorpink"
+                        android:textSize="15sp" />
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="40dp"
-                    android:textColorHint="@color/colorPrimaryDark"
-                    android:hint="@string/masukan_kab">
+                    android:hint="@string/masukan_desa"
+                    android:textColorHint="@color/colorPrimaryDark">
+
+                    <EditText
+                        android:id="@+id/edt_desa"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapWords"
+                        android:textColor="@color/colorpink"
+                        android:textSize="15sp" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:hint="@string/masukan_kec"
+                    android:textColorHint="@color/colorPrimaryDark">
+
+                    <EditText
+                        android:id="@+id/edt_kec"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapWords"
+                        android:textColor="@color/colorpink"
+                        android:textSize="15sp" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:hint="@string/masukan_kab"
+                    android:textColorHint="@color/colorPrimaryDark">
 
                     <EditText
                         android:id="@+id/edt_kab"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/colorpink"
                         android:inputType="textCapWords"
-                        android:textSize="15sp"/>
+                        android:textColor="@color/colorpink"
+                        android:textSize="15sp" />
                 </android.support.design.widget.TextInputLayout>
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_marginTop="10dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:text="Agama : "
-                    android:textSize="15sp"
-                    android:textColor="@color/colorPrimaryDark"/>
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="15sp" />
+
                 <Spinner
-                    android:padding="2dp"
-                    android:textColor="#fd1160"
                     android:id="@+id/edt_agama"
-                    android:entries="@array/Agama"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:entries="@array/Agama"
+                    android:padding="2dp"
+                    android:textColor="#fd1160" />
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColorHint="@color/colorPrimaryDark"
-                    android:hint="@string/masukan_pass">
+                    android:hint="@string/masukan_pass"
+                    android:textColorHint="@color/colorPrimaryDark">
+
                     <com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText
                         android:id="@+id/edt_pass"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Masukan Password"
-                        android:textSize="15sp"
                         android:inputType="textPassword"
                         android:textColor="@color/colorpink"
+                        android:textSize="15sp"
                         app:drawable_hide="@drawable/ic_eye_show"
                         app:drawable_show="@drawable/ic_eye_hide"
                         app:tint_color="@color/colorPrimaryDark" />
 
                 </android.support.design.widget.TextInputLayout>
 
+                <TextView
+                    android:id="@+id/txt_image"
+                    android:layout_width="match_parent"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/text_margin"
+                    android:hint="@string/ktp"
+                    android:inputType="textCapCharacters"
+                    android:padding="@dimen/appbar_padding_top" />
+
+                <ImageView
+                    android:id="@+id/image"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="@dimen/text_margin"
+                    android:padding="@dimen/text_margin" />
 
                 <Button
                     android:id="@+id/btn_daftar"
@@ -265,9 +284,9 @@
                     android:layout_marginTop="18sp"
                     android:layout_marginBottom="15dp"
                     android:text="Sudah Punya Akun..? Silahkan Login"
-                    android:textColor="@color/colorPrimaryDark"
                     android:textAlignment="center"
                     android:textAppearance="@style/TextAppearance.AppCompat"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textStyle="bold" />
 
             </LinearLayout>

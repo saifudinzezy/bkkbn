@@ -164,4 +164,5 @@ Pembentukan Organisasi Perangkat Daerah ini merupakan implementasi amanat Peratu
     <string name="send">KIRIM</string>
     <string name="insert_your_message">Ketik Pesan...</string>
     <string name="status_nikah">Status Nikah</string>
+    <string name="ktp">Upload KTP</string>
 </resources>

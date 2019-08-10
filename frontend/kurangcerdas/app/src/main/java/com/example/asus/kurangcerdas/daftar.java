@@ -1,9 +1,17 @@
 package com.example.asus.kurangcerdas;
 
+import android.Manifest;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.media.MediaScannerConnection;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -26,13 +34,28 @@ import com.example.asus.kurangcerdas.model.ResponseNoUrut;
 import com.example.asus.kurangcerdas.network.ApiService;
 import com.example.asus.kurangcerdas.network.RetroClient;
 import com.example.asus.kurangcerdas.shared.SharedLogin;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.DexterError;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.PermissionRequestErrorListener;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -95,9 +118,16 @@ public class daftar extends AppCompatActivity {
     RadioButton perempuan;
     @BindView(R.id.edt_jenkel)
     RadioGroup edtJenkel;
+    @BindView(R.id.txt_image)
+    TextView txtImage;
+    @BindView(R.id.image)
+    ImageView image;
     private Calendar myCalendar;
     ArrayAdapter<CharSequence> adapterStatus;
-    String agama,jk;
+    String agama, jk;
+    private int GALLERY = 1, CAMERA = 2;
+    String partImage = "";
+    private static final String IMAGE_DIRECTORY = "/demonuts";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,16 +139,15 @@ public class daftar extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Tunggu Sebentar...");
-
+        requestMultiplePermissions();
 
         edtJenkel.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-                RadioButton rb= (RadioButton) findViewById(checkedId);
+                RadioButton rb = (RadioButton) findViewById(checkedId);
                 jk = rb.getText().toString();
             }
         });
-
 
         //spiner status
         final ArrayAdapter<CharSequence> adapterStatus = ArrayAdapter.createFromResource(this, R.array.Agama,
@@ -139,49 +168,6 @@ public class daftar extends AppCompatActivity {
         });
 
         getUser();
-    }
-
-    @OnClick({R.id.btn_daftar, R.id.txt_login})
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.btn_daftar:
-                if (cekEditText(edtNik)) {
-                    setErrorEditText(edtNik, "NIK Kosong");
-                } else if (cekEditText(edtNama)) {
-                    setErrorEditText(edtNama, "NAMA Kosong");
-                } else if (cekEditText(edtTempat)) {
-                    setErrorEditText(edtTempat, "Tempat Lahir Kosong");
-                }/* else if (cekEditText(edtTanggal)) {
-                    setErrorEditText(edtTanggal, "Tanggal Lahir Kosong");
-                }  else if (cekEditText(edtJenkel)) {
-                    setErrorEditText(edtJenkel, "Jenis Kelamin Kosong");
-                } */ else if (cekEditText(edtAlamat)) {
-                    setErrorEditText(edtAlamat, "Masukan Jalan/Dusun");
-                } else if (cekEditText(edtRt)) {
-                    setErrorEditText(edtRt, "RT/RW Kosong");
-                } else if (cekEditText(edtKec)) {
-                    setErrorEditText(edtKec, "Kecamatan Kosong");
-                } else if (cekEditText(edtKab)) {
-                    setErrorEditText(edtKab, "Kabupaten Kosong");
-                }/* else if (cekEditText(edtAgama)) {
-                    setErrorEditText(edtAgama, "Agama Kosong");
-                } */ else if (cekEditText(edtPass)) {
-                    setErrorEditText(edtPass, "Password Kosong");
-                } else {
-                    simpan(getTextEditText(edtNik), getTextEditText(edtNama),
-                            getTextEditText(edtTempat), ubahTanggal3(getTextView(edtTanggal)), jk,
-                            getTextEditText(edtAlamat), getTextEditText(edtRt), getTextEditText(edtDesa), getTextEditText(edtKec),
-                            getTextEditText(edtKab), agama, getTextEditText(edtPass));
-                }
-                break;
-            case R.id.txt_login:
-                // Start the Signup activity
-                Intent intent = new Intent(getApplicationContext(), login.class);
-                //startActivityForResult(intent, REQUEST_SIGNUP);
-                startActivity(intent);
-                finish();
-                break;
-        }
     }
 
     private void simpan(final String nik, final String nama, final String tempat_lahir, final String tanggal_lahir, final String jenkel, final String alamat, final String rt, final String desa, final String kec, final String kabupaten, final String agama, final String password) {
@@ -253,8 +239,6 @@ public class daftar extends AppCompatActivity {
         });
     }
 
-   /*  */
-
     private void kosongkan() {
         FunctionError.kosongkan(edtNik);
         FunctionError.kosongkan(edtNama);
@@ -270,23 +254,227 @@ public class daftar extends AppCompatActivity {
         FunctionError.kosongkan(edtPass);
     }
 
-    @OnClick(R.id.txt_lahir)
-    public void onClick() {
-        new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                myCalendar.set(Calendar.YEAR, year);
-                myCalendar.set(Calendar.MONTH, month);
-                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+    @OnClick({R.id.txt_lahir, R.id.txt_image, R.id.btn_daftar, R.id.txt_login})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.txt_lahir:
+                new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        myCalendar.set(Calendar.YEAR, year);
+                        myCalendar.set(Calendar.MONTH, month);
+                        myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
-                String formatTanggal = "yyyy-MM-dd";
-                SimpleDateFormat sdf = new SimpleDateFormat(formatTanggal);
-                Toast.makeText(daftar.this, "" + ubahTanggal2(sdf.format(myCalendar.getTime())), Toast.LENGTH_SHORT).show();
-                edtTanggal.setText(ubahTanggal2(sdf.format(myCalendar.getTime())));
-            }
-        },
-                myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                        String formatTanggal = "yyyy-MM-dd";
+                        SimpleDateFormat sdf = new SimpleDateFormat(formatTanggal);
+                        Toast.makeText(daftar.this, "" + ubahTanggal2(sdf.format(myCalendar.getTime())), Toast.LENGTH_SHORT).show();
+                        edtTanggal.setText(ubahTanggal2(sdf.format(myCalendar.getTime())));
+                    }
+                },
+                        myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                break;
+            case R.id.txt_image:
+                showPictureDialog();
+                break;
+            case R.id.btn_daftar:
+                if (cekEditText(edtNik)) {
+                    setErrorEditText(edtNik, "NIK Kosong");
+                } else if (cekEditText(edtNama)) {
+                    setErrorEditText(edtNama, "NAMA Kosong");
+                } else if (cekEditText(edtTempat)) {
+                    setErrorEditText(edtTempat, "Tempat Lahir Kosong");
+                } else if (cekEditText(edtAlamat)) {
+                    setErrorEditText(edtAlamat, "Masukan Jalan/Dusun");
+                } else if (cekEditText(edtRt)) {
+                    setErrorEditText(edtRt, "RT/RW Kosong");
+                } else if (cekEditText(edtKec)) {
+                    setErrorEditText(edtKec, "Kecamatan Kosong");
+                } else if (cekEditText(edtKab)) {
+                    setErrorEditText(edtKab, "Kabupaten Kosong");
+                } else if (cekEditText(edtPass)) {
+                    setErrorEditText(edtPass, "Password Kosong");
+                } else {
+                    register(getTextEditText(edtNik), getTextEditText(edtNama),
+                            getTextEditText(edtTempat), ubahTanggal3(getTextView(edtTanggal)), jk,
+                            getTextEditText(edtAlamat), getTextEditText(edtRt), getTextEditText(edtDesa), getTextEditText(edtKec),
+                            getTextEditText(edtKab), agama, getTextEditText(edtPass));
+                }
+                break;
+            case R.id.txt_login:
+                // Start the Signup activity
+                Intent intent = new Intent(getApplicationContext(), login.class);
+                startActivity(intent);
+                finish();
+                break;
+        }
     }
 
+
+    //dialog
+    private void showPictureDialog() {
+        AlertDialog.Builder pictureDialog = new AlertDialog.Builder(this);
+        pictureDialog.setTitle("Select Action");
+        String[] pictureDialogItems = {
+                "Select photo from gallery",
+                "Capture photo from camera"};
+        pictureDialog.setItems(pictureDialogItems,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case 0:
+                                choosePhotoFromGallary();
+                                break;
+                            case 1:
+                                takePhotoFromCamera();
+                                break;
+                        }
+                    }
+                });
+        pictureDialog.show();
+    }
+
+    //open galleri
+    public void choosePhotoFromGallary() {
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK,
+                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+        startActivityForResult(galleryIntent, GALLERY);
+    }
+
+    //open camera
+    private void takePhotoFromCamera() {
+        Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent, CAMERA);
+    }
+
+    //on result
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == this.RESULT_CANCELED) {
+            return;
+        }
+        if (requestCode == GALLERY) {
+            if (data != null) {
+                Uri contentURI = data.getData();
+                try {
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI);
+                    String path = saveImage(bitmap);
+                    Toast.makeText(daftar.this, "Image Saved! " + path, Toast.LENGTH_SHORT).show();
+                    partImage = path;
+                    image.setImageBitmap(bitmap);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Toast.makeText(daftar.this, "Failed!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+        } else if (requestCode == CAMERA) {
+            Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+            image.setImageBitmap(thumbnail);
+            partImage = saveImage(thumbnail);
+            Toast.makeText(daftar.this, "Image Saved! " + thumbnail, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    //save image
+    public String saveImage(Bitmap myBitmap) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+        File wallpaperDirectory = new File(
+                Environment.getExternalStorageDirectory() + IMAGE_DIRECTORY);
+        // have the object build the directory structure, if needed.
+        if (!wallpaperDirectory.exists()) {
+            wallpaperDirectory.mkdirs();
+        }
+
+        try {
+            File f = new File(wallpaperDirectory, Calendar.getInstance()
+                    .getTimeInMillis() + ".jpg");
+            f.createNewFile();
+            FileOutputStream fo = new FileOutputStream(f);
+            fo.write(bytes.toByteArray());
+            MediaScannerConnection.scanFile(this,
+                    new String[]{f.getPath()},
+                    new String[]{"image/jpeg"}, null);
+            fo.close();
+            Log.d("TAG", "File Saved::--->" + f.getAbsolutePath());
+
+            return f.getAbsolutePath();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+        return "";
+    }
+
+    //permission
+    private void requestMultiplePermissions() {
+        Dexter.withActivity(this)
+                .withPermissions(
+                        Manifest.permission.CAMERA,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE)
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport report) {
+                        // check if all permissions are granted
+                        if (report.areAllPermissionsGranted()) {
+                            Toast.makeText(getApplicationContext(), "All permissions are granted by user!", Toast.LENGTH_SHORT).show();
+                        }
+
+                        // check for permanent denial of any permission
+                        if (report.isAnyPermissionPermanentlyDenied()) {
+                            // show alert dialog navigating to Settings
+                            //openSettingsDialog();
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+                        token.continuePermissionRequest();
+                    }
+                }).
+                withErrorListener(new PermissionRequestErrorListener() {
+                    @Override
+                    public void onError(DexterError error) {
+                        Toast.makeText(getApplicationContext(), "Some Error! ", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .onSameThread()
+                .check();
+    }
+
+    //register
+    //insert
+    private void register(final String nik, final String nama, final String tempat_lahir, final String tanggal_lahir,
+                          final String jenkel, final String alamat, final String rt, final String desa, final String kec, final String kabupaten, final String agama, final String password) {
+        File imageFile = new File(this.partImage);
+
+        RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-file"), imageFile);
+        //parm 1 samakan dengan parameter di backend
+        MultipartBody.Part partImage = MultipartBody.Part.createFormData("image", imageFile.getName(), requestBody);
+        //eksekusi
+        ApiService service = RetroClient.getApiService();
+        Call<ResponseInsert> call = service.registrasi(nik, nama, tempat_lahir, tanggal_lahir, jenkel, alamat, rt, desa, kec, kabupaten, agama, password, partImage);
+        call.enqueue(new Callback<ResponseInsert>() {
+            @Override
+            public void onResponse(Call<ResponseInsert> call, Response<ResponseInsert> response) {
+                if (response.body().getCode() == 200) {
+                    Toast.makeText(daftar.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    getUser();
+                    kosongkan();
+                } else {
+                    Toast.makeText(daftar.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseInsert> call, Throwable t) {
+                Toast.makeText(daftar.this, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 }

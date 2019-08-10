@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -31,9 +30,9 @@ import com.example.asus.admin.helper.Buka;
 import com.example.asus.admin.model.ResponseInsert;
 import com.example.asus.admin.model.laporan.PelaporanItem;
 import com.example.asus.admin.model.laporan.ResponseLaporan;
+import com.example.asus.admin.model.peruser.LapPeruserItem;
 import com.example.asus.admin.network.ApiService;
 import com.example.asus.admin.network.RetroClient;
-import com.example.asus.admin.shared.SharedLogin;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.google.gson.Gson;
@@ -48,6 +47,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.example.asus.admin.helper.Constan.KEY_DATA;
 import static com.example.asus.admin.helper.Constan.URL_IMAGE;
 
 public class MainActivity extends AppCompatActivity implements LaporanAdapter.LaporanAdapterListener {
@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements LaporanAdapter.La
     EditText edtStatus;
     Spinner spinner;
     String x = "";
+    LapPeruserItem data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +95,10 @@ public class MainActivity extends AppCompatActivity implements LaporanAdapter.La
         materialDesignFAM = (FloatingActionMenu) findViewById(R.id.material_design_android_floating_action_menu);
 
         rvList.setLayoutManager(new LinearLayoutManager(this));
-        getLap();
+        data = getIntent().getParcelableExtra(KEY_DATA);
+        if (data != null) {
+            getLap(data.getIdUser());
+        }
         edtCari.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -150,13 +154,13 @@ public class MainActivity extends AppCompatActivity implements LaporanAdapter.La
 
 
     //getLaporan
-    private void getLap() {
+    private void getLap(String id) {
         final ProgressDialog dialog = new ProgressDialog(MainActivity.this);
         dialog.setMessage("Loading...");
         dialog.show();
 
         ApiService apiService = RetroClient.getApiService();
-        Call<ResponseLaporan> call = apiService.getLaporan();
+        Call<ResponseLaporan> call = apiService.getLaporanId(id);
         call.enqueue(new Callback<ResponseLaporan>() {
             @Override
             public void onResponse(Call<ResponseLaporan> call, Response<ResponseLaporan> response) {
@@ -272,7 +276,7 @@ public class MainActivity extends AppCompatActivity implements LaporanAdapter.La
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         adapterLap.hapusData(data.getIdLapor(), "pelaporan", "id_lapor");
-                        getLap();
+                        getLap(data.getIdUser());
                     }
                 })
                 .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
@@ -334,7 +338,7 @@ public class MainActivity extends AppCompatActivity implements LaporanAdapter.La
         dialog.show();
     }
 
-    private void update(PelaporanItem data, String status, String pesam) {
+    private void update(final PelaporanItem data, String status, String pesam) {
         final ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
         progressDialog.setMessage("Send Pesan");
         progressDialog.show();
@@ -346,7 +350,7 @@ public class MainActivity extends AppCompatActivity implements LaporanAdapter.La
             public void onResponse(Call<ResponseInsert> call, Response<ResponseInsert> response) {
                 if (response.body().getCode() == 200) {
                     progressDialog.dismiss();
-                    getLap();
+                    getLap(data.getIdUser());
                 } else {
                     Toast.makeText(MainActivity.this, "Gagal Kirim Data", Toast.LENGTH_SHORT).show();
                 }

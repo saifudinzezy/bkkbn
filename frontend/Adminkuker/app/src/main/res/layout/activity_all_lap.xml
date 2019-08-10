@@ -88,17 +88,6 @@
             android:layout_height="match_parent" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/txt_notif"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:background="@color/colorPrimaryDark"
-        android:padding="@dimen/value_5dp"
-        android:text="@string/notif"
-        android:textColor="@color/white" />
-
     <com.github.clans.fab.FloatingActionMenu
         android:id="@+id/material_design_android_floating_action_menu"
         android:layout_width="wrap_content"
@@ -108,7 +97,6 @@
         android:layout_marginLeft="11dp"
         android:layout_marginRight="11dp"
         android:layout_marginBottom="11dp"
-        android:visibility="gone"
         fab:menu_animationDelayPerItem="55"
         fab:menu_backgroundColor="@android:color/transparent"
         fab:menu_buttonSpacing="0dp"

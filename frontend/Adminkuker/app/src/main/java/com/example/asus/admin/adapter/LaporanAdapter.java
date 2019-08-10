@@ -78,15 +78,18 @@ public class LaporanAdapter extends RecyclerView.Adapter<LaporanAdapter.ViewHold
             //green
             viewHolder.linear.setBackgroundColor(Color.parseColor("#00796B"));
             viewHolder.txtStatus.setText("Diproses");
+            viewHolder.txtPesan.setText(list.get(position).getPesan().toString());
         } else if (viewHolder.txtStatus.getText().toString().equalsIgnoreCase("Menunggu")) {
             //kuning
             viewHolder.linear.setBackgroundColor(Color.parseColor("#ffb300"));
             viewHolder.txtStatus.setText("Menunggu");
+            viewHolder.txtPesan.setText(list.get(position).getPesan().toString());
         } else {
             //red
             viewHolder.linear.setBackgroundColor(Color.parseColor("#E43F3F"));
             viewHolder.txtStatus.setText("Ditolak");
             viewHolder.lnPesan.setVisibility(View.VISIBLE);
+            viewHolder.txtPesan.setText(list.get(position).getPesan().toString());
         }
     }
 

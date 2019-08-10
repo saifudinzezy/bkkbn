@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".menu.ChatUser"></activity>
+        <activity android:name=".menu.AllLap"></activity>
+        <activity android:name=".menu.ChatUser" />
         <activity android:name=".Splashscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

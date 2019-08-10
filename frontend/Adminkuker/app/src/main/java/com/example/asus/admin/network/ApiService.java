@@ -6,6 +6,7 @@ import com.example.asus.admin.model.ResponseInsert;
 import com.example.asus.admin.model.chat.ResponseChat;
 import com.example.asus.admin.model.group.ResponseGroup;
 import com.example.asus.admin.model.laporan.ResponseLaporan;
+import com.example.asus.admin.model.peruser.ResponsePeruser;
 
 import okhttp3.MultipartBody;
 import retrofit2.Call;
@@ -45,8 +46,15 @@ public interface ApiService {
                                      @Part("artikel") String artikel,
                                      @Part("tanggal") String tanggal);
 
+    @GET("read/laporan_peruser.php")
+    Call<ResponsePeruser> getPeruser();
+
     @GET("read/all_laporan.php")
     Call<ResponseLaporan> getLaporan();
+
+    @FormUrlEncoded
+    @POST("read/all_laporan.php")
+    Call<ResponseLaporan> getLaporanId(@Field("id") String id);
 
     //update
     @FormUrlEncoded

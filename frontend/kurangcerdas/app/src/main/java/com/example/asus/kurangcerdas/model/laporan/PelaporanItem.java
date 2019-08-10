@@ -61,6 +61,17 @@ public class PelaporanItem{
 	@SerializedName("s_korban")
 	private String s_korban;
 
+	@SerializedName("foto")
+	private String foto;
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
 	public String getS_pelapor() {
 		return s_pelapor;
 	}

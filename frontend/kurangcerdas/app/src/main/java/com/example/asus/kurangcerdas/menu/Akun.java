@@ -4,14 +4,19 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.asus.kurangcerdas.R;
 import com.example.asus.kurangcerdas.login;
 import com.example.asus.kurangcerdas.model.ResponseInsert;
+import com.example.asus.kurangcerdas.model.load.ResponseLoad;
 import com.example.asus.kurangcerdas.network.ApiService;
 import com.example.asus.kurangcerdas.network.RetroClient;
 import com.example.asus.kurangcerdas.shared.SharedLogin;
@@ -24,12 +29,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.example.asus.kurangcerdas.helper.Constan.URL_IMAGE;
 import static com.example.asus.kurangcerdas.helper.FunctionError.cekEditText;
 import static com.example.asus.kurangcerdas.helper.FunctionError.getTextEditText;
 import static com.example.asus.kurangcerdas.helper.FunctionError.setErrorEditText;
 import static com.example.asus.kurangcerdas.shared.SharedLogin.SP_AGAMA;
 import static com.example.asus.kurangcerdas.shared.SharedLogin.SP_ALAMAT;
 import static com.example.asus.kurangcerdas.shared.SharedLogin.SP_DESA;
+import static com.example.asus.kurangcerdas.shared.SharedLogin.SP_ID;
 import static com.example.asus.kurangcerdas.shared.SharedLogin.SP_JENKEL;
 import static com.example.asus.kurangcerdas.shared.SharedLogin.SP_KAB;
 import static com.example.asus.kurangcerdas.shared.SharedLogin.SP_KEC;
@@ -73,6 +80,12 @@ public class Akun extends AppCompatActivity {
     TextView tx11;
     @BindView(R.id.txtsandi)
     ShowHidePasswordEditText txtsandi;
+    @BindView(R.id.r1)
+    RelativeLayout r1;
+    @BindView(R.id.imageView)
+    ImageView imageView;
+    @BindView(R.id.l1)
+    LinearLayout l1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +111,7 @@ public class Akun extends AppCompatActivity {
             tx10.setText(sharedLogin.getSharedString(SP_KAB));
             tx11.setText(sharedLogin.getSharedString(SP_AGAMA));
             txtsandi.setText(sharedLogin.getSharedString(SP_PASSWORD));
+            getLap(sharedLogin.getSharedString(SP_ID));
 
         }
     }
@@ -108,7 +122,7 @@ public class Akun extends AppCompatActivity {
             case R.id.img_edit:
                 if (cekEditText(txtsandi)) {
                     setErrorEditText(txtsandi, "Sandi Kosong");
-                }else {
+                } else {
                     simpan(sharedLogin.getSharedString(SP_NIK), getTextEditText(txtsandi));
                 }
                 break;
@@ -148,4 +162,37 @@ public class Akun extends AppCompatActivity {
         });
     }
 
+    //getLaporan
+    private void getLap(String id) {
+        final ProgressDialog dialog = new ProgressDialog(Akun.this);
+        dialog.setMessage("Loading...");
+        dialog.show();
+
+        ApiService apiService = RetroClient.getApiService();
+        Call<ResponseLoad> call = apiService.getLoad(id);
+        call.enqueue(new Callback<ResponseLoad>() {
+            @Override
+            public void onResponse(Call<ResponseLoad> call, Response<ResponseLoad> response) {
+                if (response.body().getCode() == 200) {
+                    try {
+                        Glide.with(Akun.this)
+                                .load(URL_IMAGE + response.body().getLoad().get(0).getFoto())
+                                .into(imageView);
+
+                        dialog.dismiss();
+                    } catch (Exception e) {
+
+                    }
+                } else {
+                    Log.e("Tag", "Gagal req data ");
+                    dialog.dismiss();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseLoad> call, Throwable t) {
+                dialog.dismiss();
+            }
+        });
+    }
 }
