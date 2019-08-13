@@ -1,6 +1,8 @@
 package com.example.asus.admin.menu;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
@@ -9,13 +11,16 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.asus.admin.R;
 import com.example.asus.admin.adapter.AdapterPeruser;
 import com.example.asus.admin.helper.Buka;
@@ -37,7 +42,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AllLap extends AppCompatActivity {
+import static com.example.asus.admin.helper.Constan.URL_IMAGE;
+import static com.example.asus.admin.helper.ConvertDate.ubahTanggal2;
+
+public class AllLap extends AppCompatActivity implements AdapterPeruser.LaporanAdapterListener {
 
     @BindView(R.id.imageView4)
     ImageView imageView4;
@@ -61,6 +69,12 @@ public class AllLap extends AppCompatActivity {
     FloatingActionMenu materialDesignAndroidFloatingActionMenu;
     List<LapPeruserItem> hasilPesan;
     AdapterPeruser adapterLap;
+    //
+    AlertDialog.Builder dialog;
+    LayoutInflater inflater;
+    View dialogView;
+    TextView txtNama, txtGender, txtAlamat, txtTmp, txtNik;
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,7 +154,7 @@ public class AllLap extends AppCompatActivity {
                         //
                         ArrayList<LapPeruserItem> list = new ArrayList<>();
                         list.addAll(hasilPesan);
-                        adapterLap = new AdapterPeruser(AllLap.this, list);
+                        adapterLap = new AdapterPeruser(AllLap.this, list, AllLap.this);
                         //  swipeMain.setRefreshing(false);
                         rvList.setAdapter(adapterLap);
                         dialog.dismiss();
@@ -160,4 +174,43 @@ public class AllLap extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onSelect(LapPeruserItem data) {
+        //buat dialog
+        dialog = new AlertDialog.Builder(AllLap.this);
+        //buat layout
+        inflater = getLayoutInflater();
+        dialogView = inflater.inflate(R.layout.pop_up_user, null);
+        dialog.setView(dialogView);
+        dialog.setCancelable(true);
+        //inisialisasi
+        txtNama = dialogView.findViewById(R.id.txt_nama);
+        txtGender = dialogView.findViewById(R.id.txt_gender);
+        txtAlamat = dialogView.findViewById(R.id.txt_alamat);
+        txtNik = dialogView.findViewById(R.id.txt_nik);
+        txtTmp = dialogView.findViewById(R.id.txt_tgl);
+        imageView = dialogView.findViewById(R.id.image);
+
+        //set
+        Glide.with(AllLap.this).load(URL_IMAGE + data.getFoto())
+                .thumbnail(0.5f)
+                //.crossFade()
+                //.diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(imageView);
+        txtNama.setText(data.getNama());
+        txtGender.setText(data.getJenkel());
+        txtNik.setText(data.getNik());
+        txtAlamat.setText(data.getAlamat());
+        txtTmp.setText(data.getTmp() + ", " + ubahTanggal2(data.getTgl()));
+
+        dialog.setNegativeButton("TUTUP", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                //keluar
+                dialog.dismiss();
+            }
+        });
+        //show dialog
+        dialog.show();
+    }
 }

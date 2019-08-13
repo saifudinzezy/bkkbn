@@ -71,6 +71,13 @@ public class AdapterPeruser extends RecyclerView.Adapter<AdapterPeruser.ViewHold
                 context.startActivity(intent);
             }
         });
+
+        viewHolder.icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               listener.onSelect(list.get(position));
+            }
+        });
     }
 
     @Override
@@ -97,6 +104,6 @@ public class AdapterPeruser extends RecyclerView.Adapter<AdapterPeruser.ViewHold
     }
 
     public interface LaporanAdapterListener {
-        void onSelect(int index, LapPeruserItem data, View view);
+        void onSelect(LapPeruserItem data);
     }
 }

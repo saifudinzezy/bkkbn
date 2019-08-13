@@ -35,4 +35,5 @@
     <dimen name="value_26dp">26dp</dimen>
     <dimen name="value_40dp">40dp</dimen>
     <dimen name="value_12sp">12sp</dimen>
+    <dimen name="width2">145dp</dimen>
 </resources>

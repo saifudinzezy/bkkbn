@@ -260,6 +260,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/text_margin"
                     android:hint="@string/ktp"
+                    android:inputType="textCapCharacters"
                     android:padding="@dimen/appbar_padding_top" />
 
                 <ImageView
